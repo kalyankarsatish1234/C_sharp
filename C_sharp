@@ -1,0 +1,604 @@
+Q.what is c#? Full form.
+1)c# is a simple and powerful Object Oriented Programming language developed by "Microsoft" that runs on .NET Frameworke.
+-c# pronounced "c Sharp".
+-developed by Andres Hejlsberg
+
+Q.why c-sharp type safe in simple language?
+1) c# is type safe because it checks the data type at compile time.
+2) it prevents runtime errors.
+3) it is a statically typed language.
+
+Q.What is datatype?
+1)Datatype specifies the different size and values that can be assigned on the variable.
+
+DataType             sizes
+int                 4 bytes.
+char                2 bytes.
+bool                1 bit.
+float               4 bytes.
+double              8 bytes.
+string              2 bytes each character.
+long                8 bytes.
+
+Q.What is variable? Full explanation.
+-Variable refers to the memory location name where we stored values.
+ex: i want to store value 10 in memory(Ram) location 1000 or any i am directly not save this value, i don't no the name of location so i want to store like 
+int a = 10. then i want to access this value using that location name as identifier.
+
+-variable is temporary storage. 
+
+Q. what is keywords?
+Keywords are the pre-defined set of reserved words that have special meaning in a program.
+
+c# keyword list:-
+eg.using, int ,char , double all datatype, abstract, try , catch , if else etc.
+
+Q.How to get input and output in c#?
+1) for input:
+String name = Console.ReadLine();
+//integer value input in c#:-
+int number = Convert.ToInt32(Console.ReadLine());
+//double value input in c#:-
+double number = Convert.ToDouble(Console.ReadLin());
+//char value input in c#:-
+char number = Console.ReadLine()[0];
+
+
+2) for output:
+Console.WriteLine("Hello World");
+
+Q.Addition of two number?
+Console.WriteLine("Enter first number");
+int num1 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter second number");
+int num2 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Addition of two number is");
+Console.WriteLine(num1 + num2);
+
+
+Q.Control flow statement
+1)Conditional statement:
+if,if-else,nested if , else if , switch statement.
+
+2)Looping statement:
+while, do while, for loop.
+
+3) jumping statement:
+-break, continue, return.
+
+Q.What is Operator? full explanation?
+-Operator is a symbol that operates on a value or variable.
+
+-is is used to perform logical & mathematical .Operation.
+
+Types:
+1) Arithmetic operator: +,-,*,/,%,++,--,<<,>> etc.
+2) Assignment operator: =,+=,-=,*=,/=,%= etc.
+3) Comparison operator: ==,!=,>,<,>=,<= etc.
+4) Logical operator: &&,||,!,^ etc.
+5) Bitwise operator: & ,|,^,~ etc.
+
+Q.What is Array?
+-Array is a variable which helps us to store multiple elements of the same type.
+eg.        10|20|30|40|50|
+ index     0   1  2  3  4
+
+ -The base index of array starts with 0 and end with n - 1.
+
+ Types of array:-
+ 1) 1d Array :
+int nums[] = {10,20,30,40,50}
+2) 2d Array :
+int matrix[2][3] = { {1, 4, 2}, {3, 6, 8} };
+  
+
+Q.What is String? full explanation.
+-String is nothing but sequence of many character which are enclosed by double quotes.
+
+For example:-
+String name ="Yash"
+Y, a , s, h it is madeup a sequence of character it store at 0, 1, 2, 3 index. 
+
+//Strings methods:
+1) Length() : returns the length of the string.
+2) ToUpper() : converts the string to uppercase.
+3) ToLower() : converts the string to lowercase.
+4) Trim() : removes the leading and trailing spaces from the string.
+5) Substring() : returns a part of the string.
+6) Concat() : concatenates two strings.
+7) Equals() : compares two strings.
+8) Replace() : replaces a character in the string.
+//reverse string 
+String str = "Hello";
+String rev = "";
+for (int i = str.length() - 1; i >= 0; i--) {
+    rev = rev + str[i];
+    }
+
+
+Q.What is Class?
+-Class is a prototype defined by user in which we define the properties and behavior of Object.
+
+Q.What is Object?
+-Object is a instance of a class that represents the class and an object is an real entity that has state and  behavior.
+eg.Mobile is class and name, cost, design etc its properties to access this class we create mob obj 
+Mobile mob = new Mobile();
+Console.WriteLine(mob.name);
+
+Q.What is Constructor? full explanation.?
+-Constructor is a special type of method whose name is same as class name, it is invoked automatically at the time of object creation.
+
+
+Note:-The main purpose of Constructor is used to initialize the data member of new object.
+
+
+1)Types of Constructor:
+a)No-arg Constructor: It does not take any argument.
+
+b)Parameterized Constructor: It takes one or more arguments.
+c)Copy Constructor: It is used to create a new object by copying the data of an existing
+object.
+d)Default Constructor: It is a no-arg constructor which is used to initialize the data members
+of an object.
+
+Q.What is encapsulation? full explanation?
+-Encapsulation is a mechanism in which data member and method is wrapped in a single unit inside a class so, that te data can't be accessed by other class.
+-it should be private.
+-Encapsulation is a way to hide the internal details of an object from the outside world and only
+
+//fundamentals of Encapsulations
+class Employee {
+    private int id;
+    private String name;
+    private double salary;
+    public void setSalary(double salary) {
+        if (salary > 0) {
+            this.salary = salary;
+            }
+        }
+        public double getSalary() {
+            return salary;
+    }
+}
+// what is access specifier?
+-Access specifier is a keyword that is used to specify the access level of a class, method or
+variable. It determines which classes can access the members of a class.
+-There are four types of access specifiers in C#.
+1) Public: It is used to access the members of a class from any where in the program
+2) Private: It is used to access the members of a class only within the class
+3) Protected: It is used to access the members of a class within the class and its derived
+classes
+4) Internal: It is used to access the members of a class within the same assembly.
+
+Q.what is inheritance?
+-inheritance allow us two create new classes that reuse, extend and modify the property defined in other class.
+
+Types:
+1)Single Inheritance: A child class inherits from a single parent class.
+2)Multiple Inheritance(through interface): A child class inherits from multiple parent classes.    
+3)Multilevel Inheritance: A child class inherits from a parent class that itself inherits from
+another parent class.
+4)Hierarchical Inheritance: A child class inherits from a parent class and the parent class.
+
+Q.What is polymorphism?
+-polymorphism means "many-form" in other word one name with multiple functionalities.
+
+-polymorphism can be static or dynamic.In static polymorphism, the response to a function is determined at the compile time. In dynamic polymorphism, it is decide at run time.
+
+
+Types of polymorphism:
+1) Static or Compile Time:
+1)Method Overloading.
+2)Operator Overloading.
+
+2)Dynamic or Runtime:
+1)virtual/Overriding method.
+
+
+Types:-
+1)Method Overloading: It is a feature of a method in a class where two or more 
+methods have the same method name but different parameters.
+2)Method Overriding: It is a feature of a method in a class where a subclass provides
+a different implementation of a method that is already available in its superclass.
+3)Operator Overloading: It is a feature of a class where operators such as +, -,
+*, / etc. can be redefined for the class.
+Types of polymorphism:
+1)static polymorphism: 
+-using method overloading
+-using Operator overloading.
+2)Dynamic polymorphism:
+-using virtual/method Overriding(inheritance)
+
+
+What is Aggregation , Association and Composition | class relationship in c#
+-Types of Relationship in object oriented Programming (oop):
+-one of the advantage of oop is code reuse.
+-the reusability possible due to the relationship b/w the classes.
+
+-oop generally support 4 types of relationship 
+1)Inheritance
+2)Aggregation
+3)Association
+4)Composition
+
+-all this relationship is based on "is a" relationship, "has-a" relationship and "part-of" relationship.
+
+In Object-Oriented Programming (OOP), relationships between classes are fundamental for designing a system. Here's a detailed explanation of the four types of relationships in C# with examples:
+
+### 1. Inheritance
+Inheritance is an "is-a" relationship. It allows a class to inherit fields and methods from another class. The class that is inherited from is called the base (or parent) class, and the class that inherits is called the derived (or child) class.
+
+**Example:**
+```csharp
+// Base class
+public class Animal
+{
+    public void Eat()
+    {
+        Console.WriteLine("Eating...");
+    }
+}
+
+// Derived class
+public class Dog : Animal
+{
+    public void Bark()
+    {
+        Console.WriteLine("Barking...");
+    }
+}
+
+// Usage
+class Program
+{
+    static void Main()
+    {
+        Dog dog = new Dog();
+        dog.Eat(); // Inherited method from Animal
+        dog.Bark();
+    }
+}
+```
+
+### 2. Aggregation
+Aggregation represents a "has-a" relationship. It is a weaker form of association where one class is a part of another class, but both can exist independently.
+
+**Example:**
+```csharp
+public class Engine
+{
+    public void Start()
+    {
+        Console.WriteLine("Engine started.");
+    }
+}
+
+public class Car
+{
+    private Engine _engine;
+
+    public Car(Engine engine)
+    {
+        _engine = engine;
+    }
+
+    public void StartCar()
+    {
+        _engine.Start();
+        Console.WriteLine("Car started.");
+    }
+}
+
+// Usage
+class Program
+{
+    static void Main()
+    {
+        Engine engine = new Engine();
+        Car car = new Car(engine);
+        car.StartCar();
+    }
+}
+```
+
+### 3. Association
+Association is a relationship where all objects have their own lifecycle, and there is no ownership. It can be one-to-one, one-to-many, many-to-one, or many-to-many.
+
+**Example:**
+```csharp
+public class Teacher
+{
+    public string Name { get; set; }
+}
+
+public class Student
+{
+    public string Name { get; set; }
+    public Teacher Teacher { get; set; }
+}
+
+// Usage
+class Program
+{
+    static void Main()
+    {
+        Teacher teacher = new Teacher { Name = "Mr. Smith" };
+        Student student = new Student { Name = "John", Teacher = teacher };
+
+        Console.WriteLine($"{student.Name} is taught by {student.Teacher.Name}");
+    }
+}
+```
+
+### 4. Composition
+Composition is a stronger form of aggregation. It is a "has-a" relationship where the composed objects cannot exist independently of the parent.
+
+**Example:**
+```csharp
+public class Heart
+{
+    public void Beat()
+    {
+        Console.WriteLine("Heart beating...");
+    }
+}
+
+public class Human
+{
+    private Heart _heart;
+
+    public Human()
+    {
+        _heart = new Heart();
+    }
+
+    public void Live()
+    {
+        _heart.Beat();
+        Console.WriteLine("Living...");
+    }
+}
+
+// Usage
+class Program
+{
+    static void Main()
+    {
+        Human human = new Human();
+        human.Live();
+    }
+}
+```
+
+Ex. composition full example 
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace Compositions
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            University obj = new University();
+            
+            // Add departments
+            obj.AddDepartMent("Computer and IT", "PIYUSH", Dep.comp, 100);
+            obj.AddDepartMent("SADA", "SATISH", Dep.art, 200);
+            obj.AddDepartMent("BBA", "RADHA", Dep.biz, 300);
+            
+            // Display department details
+            foreach (var item in obj.departments)
+            {
+                if (item is ArtDepart art)
+                {
+                    // Display Art Department details
+                    Console.WriteLine($"Dep Name: {art.Name}, Director Name: {art.Director}, NumberOfStud: {art.NumberOfStud}");
+                }
+                else if (item is CompDepart comp)
+                {
+                    // Display Comp Department details
+                    Console.WriteLine($"Dep Name: {comp.Name}, Director Name: {comp.Director}, NumberOfComputerLabs: {comp.NumberOfComputerLabs}");
+                }
+                else if (item is BizDepartment biz)
+                {
+                    // Display Biz Department details
+                    Console.WriteLine($"Dep Name: {biz.Name}, Director Name: {biz.Director}, NumberOfBooks: {biz.NumberOfBooks}");
+                }
+            }
+        }
+    }
+    
+    public enum Dep
+    {
+        comp,
+        art,
+        biz
+    }
+    
+    public class Department
+    {
+        public string Name { get; set; }
+        public string Director { get; set; }
+    }
+    
+    public class University
+    {
+        public List<Department> departments = new List<Department>();
+        
+        public void AddDepartMent(string name, string director, Dep dep, int num)
+        {
+            if (dep == Dep.art)
+            {
+                ArtDepart art = new ArtDepart
+                {
+                    Name = name,
+                    Director = director,
+                    NumberOfStud = num
+                };
+                departments.Add(art);
+            }
+            else if (dep == Dep.comp)
+            {
+                CompDepart comp = new CompDepart
+                {
+                    Name = name,
+                    Director = director,
+                    NumberOfComputerLabs = num
+                };
+                departments.Add(comp);
+            }
+            else if (dep == Dep.biz)
+            {
+                BizDepartment biz = new BizDepartment
+                {
+                    Name = name,
+                    Director = director,
+                    NumberOfBooks = num
+                };
+                departments.Add(biz);
+            }
+        }
+    }
+    
+    public class CompDepart : Department
+    {
+        public int NumberOfComputerLabs { get; set; }
+    }
+    
+    public class ArtDepart : Department
+    {
+        public int NumberOfStud { get; set; }
+    }
+    
+    public class BizDepartment : Department
+    {
+        public int NumberOfBooks { get; set; }
+    }
+}
+
+Output:
+
+Dep Name: Computer and IT, Director Name: PIYUSH, NumberOfComputerLabs: 100
+Dep Name: SADA, Director Name: SATISH, NumberOfStud: 200
+Dep Name: BBA, Director Name: RADHA, NumberOfBooks: 300
+
+
+In the examples above, `Dog` is a kind of `Animal` (Inheritance), a `Car` has an `Engine` (Aggregation), a `Student` can be associated with a `Teacher` (Association), and a `Human` is composed of a `Heart` (Composition). Each relationship type helps in designing systems that are modular, reusable, and maintainable.
+
+
+
+Q.what is tightly coupled and loosely coupled?
+Tightly coupled systems are those where components or classes are directly dependent on each other. Changes in one component often require changes in the other components it interacts with. This creates strong interdependencies.
+
+Example: Class A directly creates an instance of Class B. If Class B changes, Class A might need to change too.
+
+loosely coupled systems have components or classes that interact through abstractions (like interfaces) rather than direct dependencies. This means changes in one component have minimal impact on others, allowing for greater flexibility and easier maintenance.
+
+Example: Class A interacts with an interface rather than a specific implementation of Class B. You can swap out different implementations without changing Class A.
+
+
+**Example:**
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace HelloWorld
+{
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+			ICloths obj = new BlueCloths();
+			Console.WriteLine(obj.TShirt());
+			
+		}
+	}
+	
+	public class RedCloths:ICloths{
+	  public string TShirt(){
+	    return "red";
+	  }
+	}
+	
+		public class BlueCloths :ICloths{
+	  public string TShirt(){
+	    return "blue";
+	  }
+	}
+	
+	 interface ICloths{
+	   string TShirt();
+	}
+	
+}
+
+
+Q. What is value type and reference type?
+-value Type: Variables of these data types directly contain values.
+-value type variable is immutable data which contain memory areas - stack.
+
+reference Types:
+-Hold a memory address of location where value is stored.
+
+-Data is stored in Heap with pointer from stack.
+
+What is Delegates?
+-Delegate : it's a type safe function pointer.
+-A Delegate holds the reference of a method and then calls the method for execution.
+
+-To call method by using a delegate we 3 steps.
+
+1.Define a delegate;
+[<modifiers>] delegate void|type <Name>([parament list])
+eg.
+public delegate void AddDelegate(int x, int y);
+  pubilc delegate string SayDelegate(string str);
+
+2.Instantiating the Delegate:
+ AddDelegate ad = new AddDelegate(obj.AddNums);
+SayDelegate sd = new SayDelegat(Solution.Sayhello);
+
+3.Now call the delegate by passing required values , so that internally the method which is bound with the delegate gets executed.
+ eg:- ad(100,200);
+  sd("Hello");
+eg.using System;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Text.RegularExpressions;
+
+// namespace HelloWorld
+// {
+//   public delegate void AddDelegate(int x, int y);
+//   public delegate string SayDelegate(string str);
+// 	public class Program
+// 	{
+// 		public static void Main(string[] args)
+// 		{
+// 		  Solution obj = new Solution();
+// 		  AddDelegate ad = new AddDelegate(obj.AddNums);
+// 		  ad(100,200);
+// 		  SayDelegate sd = new SayDelegate(Solution.Sayhello);
+// 		  string str = sd(" satish");
+// 		  Console.WriteLine(str);
+		 
+// 		}
+// 	}
+	
+// 	public class Solution
+// 	{
+// 		public void AddNums(int a, int b){
+// 		  Console.WriteLine(a + b);
+// 		}
+		
+// 		public static string Sayhello(string name){
+// 		  return "Hello"+name;
+// 		}
+// 	}
+// }
+
+
+
