@@ -600,5 +600,853 @@ eg.using System;
 // 	}
 // }
 
+Types of Delegate:
+IIn C#, delegates are like pointers to methods. Here are the main types, explained simply with examples:
+
+1. **Single-cast Delegates**:
+   - These delegates point to one method at a time.
+   ```csharp
+   public delegate void PrintDelegate(string message);
+
+   public class Program
+   {
+       static void Main()
+       {
+           PrintDelegate del = PrintMessage;
+           del("Hello!");
+       }
+
+       static void PrintMessage(string message)
+       {
+           Console.WriteLine(message);
+       }
+   }
+   ```
+
+2. **Multi-cast Delegates**:
+   - These delegates can point to multiple methods. When called, they execute all the methods in the list.
+   ```csharp
+   public delegate void PrintDelegate(string message);
+
+   public class Program
+   {
+       static void Main()
+       {
+           PrintDelegate del = PrintMessage1;
+           del += PrintMessage2;
+           del("Hello, World!");
+       }
+
+       static void PrintMessage1(string message)
+       {
+           Console.WriteLine("Message 1: " + message);
+       }
+
+       static void PrintMessage2(string message)
+       {
+           Console.WriteLine("Message 2: " + message);
+       }
+   }
+   ```
+
+3. **Func Delegates**:
+   - These are delegates that return a value and can take parameters. They are useful for methods that return a result.
+   -it is Generic Delegate. (built - in)
+   ```csharp
+   public delegate int MathDelegate(int a, int b);
+
+   public class Program
+   {
+       static void Main()
+       {
+           MathDelegate add = Add;
+           int result = add(5, 3);
+           Console.WriteLine(result);
+       }
+
+       static int Add(int x, int y)
+       {
+           return x + y;
+       }
+   }
+   ```
+
+4. **Action Delegates**:
+   - These delegates are similar to `Func` but don’t return a value. They are used for methods that perform an action.
+   ```csharp
+   public delegate void PrintDelegate(string message);
+
+   public class Program
+   {
+       static void Main()
+       {
+           PrintDelegate print = PrintMessage;
+           print("This is an action delegate.");
+       }
+
+       static void PrintMessage(string message)
+       {
+           Console.WriteLine(message);
+       }
+   }
+
+These are the basic types of delegates in C#. Each serves a specific purpose, making it easy to manage and call methods dynamically.
 
 
+Q.What is Lambda expression ?
+A lambda expression in C# is a simple way to define an anonymous method. It lets you write a small piece of code directly where you need it, without creating a separate method.
+
+-The basic Syntax is :
+(parameters) => expression
+
+-Example :
+using System;
+
+namespace HelloWorld
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            // Lambda expression with no parameters
+            Func<int> getNumber = () => 42;// we use Func delegate.
+            Console.WriteLine(getNumber());  // Output: 42
+        }
+    }
+}
+
+Q.what is Exception Handling.
+-Exception Handling in c# and .Net Framework supported by the try catch and finally block is a mechanism to detect and handle run-time error in code.
+-.NET Framework provide built-in classes for common exceptions.
+-the exception are anomalies that occur during the execution of a program. They can be because of user,logic or system errors.if user doesn't provide the mechanism to handle the anomalies, the .Net Framework provide a default mechanism, which terminates the program execution.
+
+-try:a try block used to encapsulate a region of code.if code throws an exception with in try block, the exception handled by catch.
+
+-catch:When exception occurs the catch block of code is executed. this is where you handled the exception or ignore it.
+
+-finally: The finally block allows you to execute code if an exception is thrown or not. 
+
+throw-it is used to create a new exception that is bubbled up to a try catch finally block.
+
+eg.
+<!-- using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace HelloWorld
+{
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+		  Console.WriteLine("Hello");
+			int a = 12;
+			int b = 0;
+		   try
+			 {
+			  	int c = a/b;
+			   	Console.WriteLine(c);
+			 }
+			 catch(Exception ex)
+			 {
+			     Console.WriteLine("zero is not allowed!");
+			     throw ex;
+			 }
+			 
+			 finally{
+			    Console.WriteLine("finally default");
+			 }
+			 Console.WriteLine("world");
+		}
+	}
+} -->
+
+Q.what is Partial Classes and LINQ?
+-C# contain a special method is known as partial method. Which contain declaration part in one partial class adn definition part in another partial class or may contain both declaration and definition in same partial class.
+
+-
+important Points:
+-The deflation of the partial method must begin with partial modifier.
+-The partial method may contain ref.
+-The partial method does not contain out Parameters.
+-it is implicitly private method.
+-Partial method is generic.
+-It can have only void return type.
+-A partial method is created only in partial class or in partial struct.
+
+ex.
+<!-- using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace HelloWorld
+{
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+		// 	Console.WriteLine("Hello, World!");
+		  ClassA obj = new ClassA();
+		  obj.SetSalary();
+		}
+	}
+	
+	public partial class ClassA
+	{
+	  partial void SetData();
+	}
+	
+	public partial class ClassA
+	{
+	  public void SetSalary(){
+	    SetData();
+	  }
+	  
+	   partial void SetData(){
+	    Console.WriteLine("This is partial method");
+	   // Console.ReadKey();
+	  }
+	}
+} -->
+
+another example
+<!-- using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace HelloWorld
+{
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+			//Console.WriteLine("Hello, World!");
+			Student obj = new Student(175,"Satish");
+			obj.getStudent();
+		}
+	}
+	
+	public partial class Student{
+	  public int Id;
+	  public string name;
+	  
+	  public Student(int studentId, string studentName){
+	    this.Id = studentId;
+	    this.name = studentName;
+	  }
+	  
+	  
+	   partial void displayStudent();
+	}
+	
+	
+		 public partial class Student{
+	 // public int Id;
+	 // public string name;
+	  
+	 // public Student(int Id, string name){
+	 //   this.id = Id;
+	 //   this.Name = name;
+	 // }
+	  
+	 // p  void getStudent(){
+	 //   displayStudent();
+	 // }
+	 public void getStudent(){
+	   displayStudent();
+	 }
+	  
+	  partial void displayStudent(){
+	    Console.WriteLine("student id:"+Id);
+	    Console.WriteLine("student name:"+name);
+	    
+	  }
+	}
+} -->
+
+
+Q.what is Sealed Class and Method?
+-Sealed class are used to restrict the user from inheriting the class.
+-A class can be Sealed by using the sealed keyword.it keyword tells the compiler that the class is sealed, and therefore, cannot be extended. No class can be derived from a sealed class.
+
+- a method can also be sealed. the method cannot Overridden.However, a method can be sealed in the classes in which they have been inherited.
+
+-If you want to declare a method as sealed, then it has to be declared as virtual in it base class.
+ex.
+<!-- using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace HelloWorld
+{
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+		// 
+		  Employee obj = new Employee();
+		  obj.Show();
+		  obj.login();
+		  
+		  Employee obj1 = new Dept();
+		  obj1.Show();
+		  obj1.login();
+		  
+		  Employee obj2 = new Salary();
+		  obj2.Show();
+		  obj2.login();
+		
+		}
+	}
+	
+	public class Employee{
+	  public virtual void Show(){
+	    Console.WriteLine("show mehtod in Employee class");
+	  }
+	  public virtual void login(){
+	    Console.WriteLine("login method in Employee class");
+	  }
+	}
+	public class Dept:Employee{
+	   sealed public override void Show(){
+	    Console.WriteLine("show mehtod in Dept class");
+	  }
+	   public override void login(){
+	    Console.WriteLine("login method in Dept class");
+	  }
+	  
+	}
+	public class Salary:Dept{
+	    public override void login(){
+	    Console.WriteLine("login method in Salary class");
+	  }
+	}
+} -->
+
+
+Q.What is Extension Method?
+-Extension methods allow you to inject additional methods without modifying, deriving or recompiling the original class, struct or interface.
+
+-Extension method can be added to your own custom class, .NET Framework classes, or third party classes or interfaces.
+
+-an Extension method is actually special kind of static method defined in a static class.
+-to  Define an extension method, first of all, define a static class.
+
+-the only difference between a regular static method and an extension method is that first parameter of the extension method specifies the type that it is going to operator on preceded by the "this" keyword.
+
+ex.
+<!-- 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace HelloWorld
+{
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+			//Console.WriteLine("Hello, World!");
+			int i = 10;
+		  bool result = i.IsGreaterThan(100);
+		  Console.WriteLine(result);
+		}
+	}
+	
+	public static class IntExtension{
+	  
+	  public static bool IsGreaterThan(this int i, int value){
+	    return i > value;
+	  }
+	}
+} -->
+
+Q.What is local function in c#? c#7.0?
+-c#7.0 adds a new feature called local functions, which allow local method to be defined and called within a method.
+
+-This Wasn't possible in the previous versions.
+eg.
+<!-- using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		int Add (int a, int b){
+			return a +b;
+	}	
+		Console.WriteLine(Add(100,100));
+	}
+} -->
+
+what is is and as keyword in c#?
+-is Keyword
+The is keyword is used to check if an object is compatible with a given type. It returns true if the object can be cast to the specified type, otherwise it returns false.
+eg.object obj = "Hello, World!";
+
+if (obj is string)
+{
+    Console.WriteLine("The object is a string.");
+}
+else
+{
+    Console.WriteLine("The object is not a string.");
+}
+
+-as keyword:
+The as keyword is used to perform safe type casting. If the cast is successful, it returns the object as the specified type; otherwise, it returns null. This keyword is useful for avoiding exceptions when a cast fails.
+eg.
+object obj = "Hello, World!";
+string str = obj as string;
+
+if (str != null)
+{
+    Console.WriteLine("The object was successfully cast to a string.");
+}
+else
+{
+    Console.WriteLine("The object could not be cast to a string.");
+}
+
+
+Note:
+is Keyword: Used for type checking. Returns true or false.
+as Keyword: Used for safe type casting. Returns the cast object or null if the cast fails.
+
+Q.What is const vs readonly?
+-the const keyword is used to declare a constant field. The value of a is set at compile time and cannot be changed afterward.
+-it is Compile time constant.
+
+-The readonly keyword is used to declare a field that can be assigned once, either at the time of declaration or within the constructor.
+-it is runtime constant.
+
+eg.
+<!-- using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace HelloWorld
+{
+	public class Program
+	{
+	  	const int a = 12;
+		public static void Main(string[] args)
+		{
+			//Console.WriteLine("Hello, World!");
+		// 	a = 123;
+		// Console.WriteLine(a);//error CS0131: The left-hand side of an assignment must be a variable, a property or an indexer
+			
+			A obj = new A(13);
+		
+		}
+	}
+	
+	public class A{
+	  readonly int b;
+	   public A(int bb){
+	     this.b = bb;
+	     Console.WriteLine(b);
+	   }
+	}
+} -->
+
+
+Q.What is LINQ?
+- LINQ stands on (Language Integrated Query).
+-SQL-like syntax that you can use in c# and Visual Basic.
+
+-Allow you to query any type of collections that implement IEnumberable<T> or IQueryable<>.
+
+Common IEnumberable types:
+-Any Array
+-string(Array of character)
+-List
+-HashSet, Dictionary,LinkedList etc.
+Advantage:
+-Unified approach for querying any types of objects.
+-Eliminate looping code.
+-IntelliSense Support.
+
+<!-- eg.using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace LINQExample
+{
+    public class Program
+    {
+        public class Student
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+            public int Age { get; set; }
+        }
+
+        public static void Main(string[] args)
+        {
+            // Create a list of students
+            List<Student> students = new List<Student>
+            {
+                new Student { ID = 1, Name = "John", Age = 18 },
+                new Student { ID = 2, Name = "Jane", Age = 20 },
+                new Student { ID = 3, Name = "Sam", Age = 12 },
+                new Student { ID = 4, Name = "Sue", Age = 19 }
+            };
+
+            // LINQ Query Syntax to find students older than 18
+            var adultStudents = from student in students
+                                where student.Age < 18
+                                select student;
+                                
+            
+
+            Console.WriteLine("Adult students using query syntax:");
+            foreach (var student in adultStudents)
+            {
+                Console.WriteLine($"ID: {student.ID}, Name: {student.Name}, Age: {student.Age}");
+            }
+
+            // LINQ Method Syntax to find students larger than 18
+            var adultStudentsMethodSyntax = students.Where(student => student.Age > 18);
+
+            Console.WriteLine("Adult students using method syntax:");
+            foreach (var student in adultStudentsMethodSyntax)
+            {
+                Console.WriteLine($"ID: {student.ID}, Name: {student.Name}, Age: {student.Age}");
+            }
+    
+        }
+    }
+} -->
+
+What is var vs dynamics vs object in c#?
+int: A simple value type.
+object: The base type for all types in C#, allows for boxing and unboxing.
+var: An implicitly typed local variable, with type determined at compile time.
+-not sured user which data give
+dynamic: A dynamically typed variable, with type determined at runtime.
+
+Q.what is struct in C#?
+-A structure in c# simply a composite data type/ value type consisting a number elements of other types.
+-A c# structure is value type and the instance or object of structure are created in stack.
+
+- the structure in c# can contain fields, methods,
+not constructor(by using method u can assign );
+-struct are mainly used to hold small data values.
+
+-it can defined using struct operator.
+
+Q.what is Enumeration(Enum) in c#?
+**Enums in C#: Summary**
+
+- **Definition:** An enum (short for "enumeration") is a distinct value type that defines a set of named constants. It helps represent a collection of related values under a single type.
+
+- **Purpose:** 
+  - **Type Safety:** Restricts the possible values to a predefined set, making the code safer and preventing invalid values.
+  - **Readability:** Improves code clarity by using descriptive names instead of numeric constants.
+  - **Maintainability:** Makes it easier to manage and understand related constant values.
+
+- **Syntax:**
+  ```csharp
+  enum EnumName
+  {
+      Constant1, // Default value 0
+      Constant2, // Default value 1
+      // ...
+  }
+  ```
+
+- **Default Values:**
+  - The first enumerator starts at `0` by default, with each subsequent enumerator incremented by `1`. Values can be explicitly set.
+
+- **Underlying Type:**
+  - By default, enums use `int` as their underlying type, but you can specify other integral types (e.g., `byte`, `short`).
+
+- **Common Methods:**
+  - `Enum.GetName(typeof(EnumType), value)`: Gets the name of the enum member with the specified value.
+  - `Enum.GetNames(typeof(EnumType))`: Retrieves an array of names of the enum members.
+  - `Enum.GetValues(typeof(EnumType))`: Retrieves an array of all values of the enum.
+
+- **Example:**
+  ```csharp
+  enum Days
+  {
+      Monday,    // 0
+      Tuesday,   // 1
+      Wednesday, // 2
+      // ...
+  }
+
+  public class Program
+  {
+      public static void Main(string[] args)
+      {
+          Console.WriteLine(Days.Monday); // Output: Monday
+          Console.WriteLine((int)Days.Tuesday); // Output: 1
+          Console.WriteLine(Enum.GetName(typeof(Days), 2)); // Output: Wednesday
+
+          foreach (string day in Enum.GetNames(typeof(Days)))
+          {
+              Console.WriteLine(day);
+          }
+      }
+  }
+  ```
+
+- **Use Cases:**
+  - Representing fixed sets of values (e.g., days of the week, months of the year).
+  - Creating state machines (e.g., workflow states).
+  - Configurations and options (e.g., user roles, settings).
+
+Enums provide a structured and clear way to handle a set of related constants, improving code quality and making it easier to work with predefined values.
+
+Q.what is File handling in c#?
+
+-Here's a summary of the file and directory operations shown in your code:
+
+### 1. **Create a Directory:**
+```csharp
+string dirPath = @"C:\Users\sk\dotnet\c#";
+Directory.CreateDirectory(dirPath);
+```
+- **Create Directory:** Creates a new folder at the specified path.
+
+### 2. **Create a File:**
+```csharp
+string filePath = @"C:\Users\sk\dotnet\c#\example.txt";
+File.Create(filePath).Dispose(); // Creates a new file and closes the file handle.
+```
+- **Create File:** Creates a new file at the specified path.
+
+### 3. **Write to a File:**
+```csharp
+string filePath = @"D:\test.txt";
+string[] lines = new string[] {
+    "Hello user, welcome",
+    "Today is Friday",
+    DateTime.Now.ToString()
+};
+File.WriteAllLines(filePath, lines);
+```
+- **Write to File:** Writes an array of strings to a file, creating the file if it does not exist.
+
+### 4. **Read from a File:**
+```csharp
+string filePath = @"D:\test.txt";
+string[] lines = File.ReadAllLines(filePath);
+foreach (var line in lines)
+{
+    Console.WriteLine(line);
+}
+```
+- **Read from File:** Reads all lines from a file and prints them to the console.
+
+### 5. **List Files in a Directory:**
+```csharp
+string dirPath = @"C:\Users\sk\dotnet\c#";
+string[] fileList = Directory.GetFiles(dirPath);
+foreach (var file in fileList)
+{
+    Console.WriteLine(file);
+}
+```
+- **List Files:** Retrieves and lists all files in a specified directory.
+
+### 6. **File Information:**
+```csharp
+string filePath = @"D:\test.txt";
+FileInfo fileInfo = new FileInfo(filePath);
+Console.WriteLine(fileInfo.FullName);
+Console.WriteLine(fileInfo.DirectoryName);
+Console.WriteLine(fileInfo.Name);
+Console.WriteLine(fileInfo.Extension);
+Console.WriteLine(fileInfo.Length + " bytes");
+```
+- **File Information:** Provides details about a file, such as its full path, directory, name, extension, and size.
+
+
+
+
+Q.What is Reflection in c# ?
+Reflection in C# is a way to look at and interact with objects and their details while the program is running. It allows you to:
+
+1. **Examine Object Details:** Find out information about classes, methods, properties, and other parts of your code.
+   - Example: Check what methods a class has.
+
+2. **Access and Modify Properties:** Get or change the values of properties and fields, even if they are private.
+   - Example: Change the value of a property of an object.
+
+3. **Invoke Methods:** Call methods on objects dynamically, even if you don’t know them in advance.
+   - Example: Call a method of a class without knowing its name at compile time.
+
+4. **Create Objects:** Create instances of classes without knowing their types until the program is running.
+   - Example: Make an object of a class based on user input.
+
+5. **Read Metadata:** Check extra information added to classes and methods, such as custom labels or attributes.
+   - Example: Get special tags added to a class to understand its purpose.
+
+### Example in Simple Terms
+
+```csharp
+using System;
+using System.Reflection;
+
+namespace ReflectionExample
+{
+    public class Person
+    {
+        public string Name { get; set; }
+        public void Greet()
+        {
+            Console.WriteLine("Hello!");
+        }
+    }
+
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            // Get information about the Person class
+            Type type = typeof(Person);
+
+            // Create a Person object
+            object person = Activator.CreateInstance(type);
+
+            // Set the Name property
+            PropertyInfo nameProp = type.GetProperty("Name");
+            nameProp.SetValue(person, "Alice");
+
+            // Get and print the Name property
+            Console.WriteLine("Name: " + nameProp.GetValue(person));
+
+            // Call the Greet method
+            MethodInfo greetMethod = type.GetMethod("Greet");
+            greetMethod.Invoke(person, null);
+        }
+    }
+}
+```
+
+### What This Code Does:
+- **Finds Information:** Gets details about the `Person` class.
+- **Creates an Object:** Makes a new `Person` instance.
+- **Sets a Property:** Changes the `Name` property of the `Person` object.
+- **Calls a Method:** Runs the `Greet` method of the `Person` object.
+
+Reflection helps you work with objects in a flexible way when you need to inspect or modify them at runtime.
+
+Q.What is Threading and Task in c#?
+
+-thread = an execution path of program
+we can use multiple threads to perform.
+different tasks of our program at the same time.
+Current thread running is "Main" thread 
+using System.Threading;
+-### Threading and Tasks in C#
+
+**Threading** and **Tasks** are concepts in C# used for performing operations concurrently, allowing your application to execute multiple operations simultaneously. Here’s a brief overview and examples to illustrate how they work.
+
+#### Threading
+
+**Threading** involves running multiple threads in parallel. Each thread is an independent path of execution. The `System.Threading` namespace provides classes and methods to work with threads.
+
+**Key Concepts:**
+- **Thread**: Represents an independent path of execution within a program.
+- **Main Thread**: The primary thread where the program begins execution.
+
+**Basic Example Using `Thread`:**
+
+```csharp
+using System;
+using System.Threading;
+
+class Program
+{
+    static void Main()
+    {
+        // Create a new thread and start it
+        Thread newThread = new Thread(DoWork);
+        newThread.Start();
+
+        // Main thread continues executing here
+        Console.WriteLine("Main thread is running...");
+
+        // Wait for the new thread to finish
+        newThread.Join();
+
+        Console.WriteLine("Main thread finished.");
+    }
+
+    static void DoWork()
+    {
+        Console.WriteLine("New thread is working...");
+        Thread.Sleep(2000); // Simulate work
+        Console.WriteLine("New thread finished.");
+    }
+}
+```
+
+**Explanation:**
+- A new thread is created and started using `new Thread(DoWork)`. The `DoWork` method runs on this new thread.
+- `Thread.Sleep(2000)` simulates a delay of 2 seconds.
+- `newThread.Join()` makes the main thread wait until the new thread completes.
+
+#### Tasks
+
+**Tasks** provide a higher-level abstraction for concurrency, making it easier to work with asynchronous operations. They are part of the `System.Threading.Tasks` namespace.
+
+**Key Concepts:**
+- **Task**: Represents an asynchronous operation and allows you to use the `async` and `await` keywords for asynchronous programming.
+
+**Basic Example Using `Task`:**
+
+```csharp
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        // Start a new task
+        Task task = DoWorkAsync();
+
+        // Main thread continues executing here
+        Console.WriteLine("Main thread is running...");
+
+        // Await the task to complete
+        await task;
+
+        Console.WriteLine("Main thread finished.");
+    }
+
+    static async Task DoWorkAsync()
+    {
+        Console.WriteLine("Task is working...");
+        await Task.Delay(2000); // Simulate work
+        Console.WriteLine("Task finished.");
+    }
+}
+```
+
+**Explanation:**
+- `DoWorkAsync` is an asynchronous method that returns a `Task`. It uses `await Task.Delay(2000)` to simulate a delay of 2 seconds.
+- `Main` is also an asynchronous method (`async Task Main()`) to use `await` for awaiting the completion of `DoWorkAsync`.
+
+#### Comparison
+
+- **Threads**: Lower-level control, requiring manual management of threads, synchronization, and more complex error handling.
+- **Tasks**: Higher-level abstraction, easier to use with support for asynchronous programming, and better integration with modern C# features like `async` and `await`.
+
+### Summary
+
+- **Threading** allows you to create multiple threads to execute code concurrently, giving you control over individual threads and their execution.
+- **Tasks** simplify asynchronous programming, making it easier to write concurrent code with support for modern language features and error handling.
+
+Both threading and tasks are crucial for building efficient and responsive applications, but tasks are often preferred for their ease of use and integration with asynchronous programming patterns in C#.
